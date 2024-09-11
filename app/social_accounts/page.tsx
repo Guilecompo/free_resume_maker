@@ -45,29 +45,26 @@ const SocialPage = () => {
   }, []);
 
   const handleSubmitSocialAccounts = () => {
-    // Validate inputs
-    if (!portfolioLink && !linkedinLink && !githubLink) {
-      setError('Please provide at least one link before proceeding.');
-      return;
-    }
+    // Function to remove 'https://' from links
+    const sanitizeLink = (link: string) => link.replace(/^https?:\/\//, '');
 
     // Save social accounts to localStorage
     const socialAccounts = {
-      portfolioLink: portfolioLink || ' ',
-      linkedinLink: linkedinLink || ' ',
-      githubLink: githubLink || ' '
+      portfolioLink: portfolioLink.trim() || ' ',
+      linkedinLink: sanitizeLink(linkedinLink.trim()) || ' ',
+      githubLink: sanitizeLink(githubLink.trim()) || ' '
     };
     localStorage.setItem('socialAccounts', JSON.stringify(socialAccounts));
 
     // Redirect to the next page
-    router.push('/technical_skills'); // Navigate to the next page
+    router.push('/technical_skills');
   };
 
   return (
-    <div className="h-screen bg-[#264653] flex items-start justify-center px-4">
+    <div className="min-h-screen bg-[#264653] flex items-start justify-center px-4 py-8 overflow-y-auto">
       <div className="flex flex-col items-center justify-start w-full max-w-screen-lg">
         {/* Title Layer */}
-        <div className="mt-28">
+        <div className="mt-8 sm:mt-16">
           <h3 className="text-white text-2xl mb-4">Personal</h3>
         </div>
 
@@ -105,7 +102,7 @@ const SocialPage = () => {
 
         {/* Content Layer */}
         <div className="text-white text-center mt-5 w-full max-w-2xl">
-          <Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} >
+          <Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} className="mb-8">
             <CardHeader>
               <h2 className="text-sm font-medium text-center text-white">Step 3 </h2>
               <CardTitle className="text-lg text-start text-gray-800">Social Accounts</CardTitle>
