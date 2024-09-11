@@ -61,15 +61,15 @@ const SummaryPage = () => {
   };
 
   return (
-    <div className="h-screen bg-[#264653] flex items-start justify-center px-4">
+    <div className="min-h-screen bg-[#264653] flex flex-col items-center justify-start px-4 py-8 overflow-y-auto">
       <div className="flex flex-col items-center justify-start w-full max-w-screen-lg">
         {/* Title Layer */}
-        <div className="mt-28">
+        <div className="mt-8 sm:mt-16">
           <h3 className="text-white text-2xl mb-4">Personal</h3>
         </div>
 
         {/* Progress Bar Layer */}
-        <div className="relative w-full mb-6 max-w-2xl mt-10">
+        <div className="relative w-full mb-6 max-w-2xl mt-6 sm:mt-10">
           {/* White background for the progress bar */}
           <div
             className="absolute bottom-0 left-0 h-2 rounded-full"
@@ -89,20 +89,20 @@ const SummaryPage = () => {
         </div>
 
         {/* Icons and Labels Layer */}
-        <div className="flex items-center justify-between w-full max-w-2xl px-4 md:px-8 ">
+        <div className="flex items-center justify-between w-full max-w-2xl px-4 md:px-8 mb-6">
           {steps.map((step, index) => (
             <div key={index} className="flex flex-col items-center">
-              <div className={`text-2xl mb-2 ${step.isActive ? 'text-yellow-500' : 'text-white'}`}>
+              <div className={`text-xl sm:text-2xl mb-1 sm:mb-2 ${step.isActive ? 'text-yellow-500' : 'text-white'}`}>
                 {step.icon}
               </div>
-              <span className="text-white ml-2 md:ml-0">{step.label}</span>
+              <span className="text-white text-xs sm:text-sm">{step.label}</span>
             </div>
           ))}
         </div>
 
         {/* Content Layer */}
-        <div className="text-white text-center mt-5 w-full max-w-2xl">
-          <Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
+        <div className="text-white text-center w-full max-w-2xl">
+          <Card className="bg-[#ffffff33]">
             <CardHeader>
               <h2 className="text-sm font-medium text-center text-white">Final Step </h2>
               <CardTitle className="text-lg text-start text-gray-800">Personal Summary</CardTitle>

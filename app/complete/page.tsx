@@ -187,9 +187,9 @@ const CompletePage = () => {
   };
 
   return (
-    <div className="h-screen bg-[#264653] flex items-start justify-center px-4">
+    <div className="min-h-screen bg-[#264653] flex items-start justify-center px-4 py-8 overflow-y-auto">
       <div className="flex flex-col items-center justify-start w-full max-w-screen-lg">
-        <div className="mt-36">
+        <div className="mt-8 sm:mt-16 md:mt-24">
           <h3 className="text-white text-2xl mb-4">Complete</h3>
         </div>
 
@@ -215,12 +215,12 @@ const CompletePage = () => {
           ))}
         </div>
 
-        <div className="text-white text-center mt-2 w-full max-w-2xl">
+        <div className="text-white text-center mt-2 w-full max-w-2xl mb-8">
           <Card className="bg-[#ffffff33]">
             <CardHeader>
               <CardTitle className="text-lg text-start text-gray-800">Screenshot of Projects</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="overflow-y-auto max-h-[60vh]">
               <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
                 <div className="flex flex-col">
                   {selectedImage && (
@@ -256,7 +256,7 @@ const CompletePage = () => {
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="flex flex-col justify-center items-center px-2">
+            <CardFooter className="flex flex-col justify-center items-center px-2 pb-4">
               <div className="flex flex-col w-full gap-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <Button className="w-full" onClick={handleAddScreenshots}>Add New Screenshot</Button>
