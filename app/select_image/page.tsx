@@ -21,7 +21,7 @@ const steps = [
 ];
 
 const SelectImagePage = () => {
-  const [progress, setProgress] = useState(21); // Update progress to reflect step 2
+  const [progress, setProgress] = useState(20); // Update progress to reflect step 2
   const [selectedImage, setSelectedImage] = useState<string | ArrayBuffer | null>(null); // State for selected image
   const [error, setError] = useState<string>(''); // State for validation error message
   const router = useRouter();
@@ -34,7 +34,7 @@ const SelectImagePage = () => {
     }
 
     // Simulate progress update
-    const timer = setTimeout(() => setProgress(40), 500);
+    const timer = setTimeout(() => setProgress(20), 500);
     return () => clearTimeout(timer);
   }, []);
 

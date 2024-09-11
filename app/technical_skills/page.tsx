@@ -16,7 +16,7 @@ const steps = [
 ];
 
 const TechnicalPage = () => {
-  const [progress, setProgress] = useState(80); // Update progress to reflect step 4
+  const [progress, setProgress] = useState(21); // Update progress to reflect step 4
   const [skillInput, setSkillInput] = useState("");
   const [skills, setSkills] = useState<string[]>([]);
   const [showDialog, setShowDialog] = useState(false); // State to manage dialog visibility
@@ -31,7 +31,7 @@ const TechnicalPage = () => {
     }
     
     // Simulate progress update
-    const timer = setTimeout(() => setProgress(80), 500);
+    const timer = setTimeout(() => setProgress(21), 500);
     return () => clearTimeout(timer);
   }, []);
 

@@ -370,93 +370,160 @@ const ResumeTemplate = () => {
                                             <h2 className="text-[8px] md:text-sm font-semibold text-start mt-2 px-2 uppercase">{`${educationDetails.bachelor ? `${educationDetails.bachelor} in ` : ''}${educationDetails.course || ''}`}</h2>
                                             <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2">{`${educationDetails.school || ''}${educationDetails.school && (educationDetails.started || educationDetails.ended) ? ' | ' : ''}${educationDetails.started ? formatDate(educationDetails.started) : ''}${educationDetails.ended ? ` - ${formatDate(educationDetails.ended)}` : ''}`}</h2>
                                             <div className="ps-4 text-xs md:text-[12px]">
-                                                {certificates.length > 0 ? (
-                                                    certificates.map((cert, index) => (
-                                                        <div key={index} >
-                                                            <p className="text-[7px] md:text-[12px] text-start flex items-center">• {cert.certificate_title} | {cert.company_name}</p>
+                                                {certificates.filter(cert => cert.certificate_title.trim() || cert.company_name.trim()).length > 0 ? (
+                                                    certificates.filter(cert => cert.certificate_title.trim() || cert.company_name.trim()).map((cert, index) => (
+                                                        <div key={index}>
+                                                            <p className="text-[7px] md:text-[12px] text-start flex items-center">
+                                                                {/* Conditional Bullet Point */}
+                                                                {index > 0 && '• '}
+                                                                {/* Conditional Display of Certificate Title */}
+                                                                {cert.certificate_title.trim()}
+                                                                {/* Conditional Pipe Separator and Company Name */}
+                                                                {cert.company_name.trim() ? ` | ${cert.company_name.trim()}` : ''}
+                                                            </p>
                                                         </div>
                                                     ))
-                                                ) : (
-                                                    <p></p>
-                                                )}
+                                                ) : null}
                                             </div>
                                         </div>
                                         <div className="border-b-4 " style={{ borderColor: selectedColor.secondColor }}></div>
                                         <div className="mt-2 mb-2 h-40 max-h-40">
                                             <h2 className="text-[9px] md:text-[14px] font-semibold text-start uppercase">Relevant Experience</h2>
-                                            <h2 className="text-[8px] md:text-sm font-semibold text-start mt-2 px-2 uppercase">{`${experience.work || ''}${experience.work && experience.position ? ` - ${experience.position}` : experience.position || ''}`}</h2>
-                                            <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2">{`${experience.company || ''}${experience.company && (experience.started || experience.ended) ? ' | ' : ''}${experience.started ? formatDate(experience.started) : ''}${experience.ended ? ` - ${formatDate(experience.ended)}` : ''}`}</h2>
+                                            {
+                                                // Check if work or position are non-empty or non-whitespace
+                                                (experience.work.trim() || experience.position.trim()) && (
+                                                    <h2 className="text-[8px] md:text-sm font-semibold text-start mt-2 px-2 uppercase">
+                                                        {experience.work.trim() || ''} 
+                                                        {experience.work.trim() && experience.position.trim() ? ` - ${experience.position.trim()}` : (experience.position.trim() || '')}
+                                                    </h2>
+                                                )
+                                            }
+
+                                            {
+                                                // Check if company, company_address, started or ended are non-empty or non-whitespace
+                                                (experience.company.trim() || experience.company_address.trim() || experience.started.trim() || experience.ended.trim()) && (
+                                                    <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2">
+                                                        {experience.company.trim() || ''} 
+                                                        {experience.company.trim() && (experience.started.trim() || experience.ended.trim()) ? ' | ' : ''}
+                                                        {experience.started.trim() ? formatDate(experience.started.trim()) : ''}
+                                                        {experience.ended.trim() ? ` - ${formatDate(experience.ended.trim())}` : ''}
+                                                    </h2>
+                                                )
+                                            }
                                             <h2 className="text-[8px] md:text-[12px] text-start ps-3">{`${experience.description}`}</h2>
                                             <div className="ps-4 text-[7px] md:text-[12px]">
-                                            {experience.work_details.length > 0 ? (
-                                                experience.work_details.map((detail) => (
-                                                    <div key={detail.work_details_id}>
-                                                        <p className="text-[7px] md:text-[12px] text-start flex items-center">• {detail.work_details}</p>
-                                                    </div>
-                                                ))
-                                            ) : (
-                                                <p></p>
-                                            )}
+                                                {experience.work_details.filter(detail => detail.work_details.trim()).length > 0 ? (
+                                                    experience.work_details.filter(detail => detail.work_details.trim()).map((detail) => (
+                                                        <div key={detail.work_details_id}>
+                                                            <p className="text-[7px] md:text-[12px] text-start flex items-center">
+                                                                {/* Display bullet point and work details */}
+                                                                • {detail.work_details.trim()}
+                                                            </p>
+                                                        </div>
+                                                    ))
+                                                ) : null}
                                             </div>  
                                         </div>
                                         <div className="border-b-4 " style={{ borderColor: selectedColor.secondColor }}></div>
                                         <div className="mt-2 mb-2 h-96 max-h-96">
                                             <h2 className="text-[9px] md:text-[14px] font-semibold text-start uppercase">Projects</h2>
-                                                {projects.map((project) => (
-                                                    <div key={project.project_id} className="">
-                                                        <h2 className="text-[8px] md:text-sm font-semibold text-start mt-2 px-2 uppercase">{project.project_title}</h2>
-                                                        <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2">{`${project.project_type} | ${formatDate(project.project_started)} - ${formatDate(project.project_ended)}`}</h2>
-                                                        <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2 text-gray-600 ps-3">
-                                                            {project.platform_use.length > 0 ? (
-                                                                project.platform_use.map((platform, index) => (
-                                                                    <span key={platform.project_platform_useId}>
-                                                                        {index > 0 && ' | '}
-                                                                        {platform.platform_use}
-                                                                    </span>
-                                                                ))
-                                                            ) : (
-                                                                'No platforms used'
-                                                            )}
+                                            {projects.map((project) => (
+                                                <div key={project.project_id} className="">
+                                                    {/* Display project title only if it exists */}
+                                                    {project.project_title.trim() && (
+                                                        <h2 className="text-[8px] md:text-sm font-semibold text-start mt-2 px-2 uppercase">
+                                                            {project.project_title}
                                                         </h2>
-                                                        <h2 className="text-[8px] md:text-[12px] text-start ps-3">{project.project_description}</h2>
+                                                    )}
+
+                                                    {/* Display project type and dates only if they exist */}
+                                                    {(project.project_type.trim() || project.project_started.trim() || project.project_ended.trim()) && (
+                                                        <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2">
+                                                            {project.project_type.trim() || ''}
+                                                            {project.project_type.trim() && (project.project_started.trim() || project.project_ended.trim()) ? ' | ' : ''}
+                                                            {project.project_started.trim() ? `${formatDate(project.project_started)}` : ''}
+                                                            {project.project_ended.trim() ? ` - ${formatDate(project.project_ended)}` : ''}
+                                                        </h2>
+                                                    )}
+
+                                                    {/* Display platforms used only if there are any */}
+                                                    {project.platform_use.length > 0 && (
+                                                        <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2 text-gray-600 ps-3">
+                                                            {project.platform_use.map((platform, index) => (
+                                                                <span key={platform.project_platform_useId}>
+                                                                    {index > 0 && ' | '}
+                                                                    {platform.platform_use.trim()}
+                                                                </span>
+                                                            ))}
+                                                        </h2>
+                                                    )}
+
+                                                    {/* Display project description only if it exists */}
+                                                    {project.project_description.trim() && (
+                                                        <h2 className="text-[8px] md:text-[12px] text-start ps-3">
+                                                            {project.project_description}
+                                                        </h2>
+                                                    )}
+
+                                                    {/* Display project details only if there are any */}
+                                                    {project.project_details.length > 0 && (
                                                         <div className="ps-4 text-[7px] md:text-[12px]">
-                                                            {project.project_details.length > 0 ? (
-                                                                project.project_details.map((detail) => (
-                                                                    <div key={detail.project_details_id}>
-                                                                        <p className="text-[7px] md:text-[12px] text-start flex items-center">• {detail.project_details}</p>
-                                                                    </div>
-                                                                ))
-                                                            ) : (
-                                                                <p></p>
-                                                            )}
+                                                            {project.project_details.map((detail) => (
+                                                                <div key={detail.project_details_id}>
+                                                                    <p className="text-[7px] md:text-[12px] text-start flex items-center">
+                                                                        • {detail.project_details.trim()}
+                                                                    </p>
+                                                                </div>
+                                                            ))}
                                                         </div>
-                                                    </div>
-                                                ))}
+                                                    )}
+                                                </div>
+                                            ))}
                                         </div>
                                         <div className="border-b-4 " style={{ borderColor: selectedColor.secondColor }}></div>
                                         <div className="mt-2 mb-2 h-24 max-h-24">
                                             <h2 className="text-[9px] md:text-[14px] font-semibold text-start uppercase">Activities</h2>
-                                                {activities.length > 0 ? (
-                                                    activities.map((activity) => (
-                                                        <div key={activity.activity_id} className="mb-2">
-                                                            <h2 className="text-[8px] md:text-sm font-semibold text-start mt-2 px-2 uppercase">{activity.activity_type} - {activity.activity_title}</h2>
-                                                            <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2">{activity.activity_community} | {formatDate(activity.activity_started)} - {formatDate(activity.activity_ended)}</h2>
+                                            {activities.filter(activity => 
+                                                    activity.activity_title.trim() || 
+                                                    activity.activity_community.trim() || 
+                                                    activity.activity_started.trim() || 
+                                                    activity.activity_ended.trim() || 
+                                                    activity.organization_detail.length > 0
+                                                ).map(activity => (
+                                                    <div key={activity.activity_id} className="mb-2">
+                                                        {/* Display activity type and title only if they exist */}
+                                                        {(activity.activity_type.trim() || activity.activity_title.trim()) && (
+                                                            <h2 className="text-[8px] md:text-sm font-semibold text-start mt-2 px-2 uppercase">
+                                                                {activity.activity_type.trim()} - {activity.activity_title.trim()}
+                                                            </h2>
+                                                        )}
+
+                                                        {/* Display community and dates only if they exist */}
+                                                        {(activity.activity_community.trim() || activity.activity_started.trim() || activity.activity_ended.trim()) && (
+                                                            <h2 className="text-[8px] md:text-[12px] font-light md:font-medium text-start px-2">
+                                                                {activity.activity_community.trim() || ''}
+                                                                {activity.activity_community.trim() && (activity.activity_started.trim() || activity.activity_ended.trim()) ? ' | ' : ''}
+                                                                {activity.activity_started.trim() ? `${formatDate(activity.activity_started.trim())}` : ''}
+                                                                {activity.activity_ended.trim() ? ` - ${formatDate(activity.activity_ended.trim())}` : ''}
+                                                            </h2>
+                                                        )}
+
+                                                        {/* Display organization details only if there are any */}
+                                                        {activity.organization_detail.length > 0 && (
                                                             <div className="ps-4 text-[7px] md:text-[12px]">
-                                                                {activity.organization_detail.length > 0 ? (
-                                                                    activity.organization_detail.map((detail) => (
+                                                                {activity.organization_detail.map(detail => (
+                                                                    detail.organization_detail.trim() && (
                                                                         <div key={detail.organization_detail_id}>
-                                                                            <p className="text-[7px] md:text-[12px] text-start flex items-center">• {detail.organization_detail}</p>
+                                                                            <p className="text-[7px] md:text-[12px] text-start flex items-center">
+                                                                                • {detail.organization_detail.trim()}
+                                                                            </p>
                                                                         </div>
-                                                                    ))
-                                                                ) : (
-                                                                    <p></p>
-                                                                )}
+                                                                    )
+                                                                ))}
                                                             </div>
-                                                        </div>
-                                                    ))
-                                                ) : (
-                                                    <p></p>
-                                                )}
+                                                        )}
+                                                    </div>
+                                                ))}
                                         </div>
                                     </div>
                                 </div>

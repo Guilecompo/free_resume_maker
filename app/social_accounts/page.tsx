@@ -22,7 +22,7 @@ const steps = [
 ];
 
 const SocialPage = () => {
-  const [progress, setProgress] = useState(22); // Update progress to reflect step 3
+  const [progress, setProgress] = useState(21); // Update progress to reflect step 3
   const [portfolioLink, setPortfolioLink] = useState('');
   const [linkedinLink, setLinkedinLink] = useState('');
   const [githubLink, setGithubLink] = useState('');
@@ -40,7 +40,7 @@ const SocialPage = () => {
     }
 
     // Simulate progress update
-    const timer = setTimeout(() => setProgress(60), 500);
+    const timer = setTimeout(() => setProgress(21), 500);
     return () => clearTimeout(timer);
   }, []);
 

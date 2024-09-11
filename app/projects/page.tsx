@@ -36,7 +36,7 @@ const steps = [
 
 const ProjectPage = () => {
   const router = useRouter();
-  const [progress, setProgress] = useState(20);
+  const [progress, setProgress] = useState(26);
   const [platform_use, setPlatform_use] = useState<string[]>([]);
   const [project_descriptionInput, setProject_descriptionInput] = useState<string>("");
   const [project_detailsInput, setProject_detailsInput] = useState<string>("");
@@ -63,6 +63,9 @@ const ProjectPage = () => {
     if (savedProjects) {
       setProjects(JSON.parse(savedProjects));
     }
+
+    const timer = setTimeout(() => setProgress(26), 500);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleAddCoreSkill = () => {
@@ -225,6 +228,7 @@ const ProjectPage = () => {
                     <Input
                       id="project_type"
                       type="text"
+                      placeholder='e.g. Personal Project'
                       value={formProjectType}
                       onChange={(e) => setFormProjectType(e.target.value)}
                       required
@@ -257,6 +261,7 @@ const ProjectPage = () => {
                     <Input
                       id="platform_use"
                       type="text"
+                      placeholder='e.g. JavaScript'
                       value={project_descriptionInput}
                       onChange={(e) => setProject_descriptionInput(e.target.value)}
                     />

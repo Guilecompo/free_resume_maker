@@ -17,7 +17,7 @@ const steps = [
 ];
 
 const CorePage = () => {
-  const [progress, setProgress] = useState(40); // Update progress to reflect step 6
+  const [progress, setProgress] = useState(22); // Update progress to reflect step 6
   const [coreInput, setCoreInput] = useState("");
   const [coreSkills, setCoreSkills] = useState<string[]>([]);
   const [showDialog, setShowDialog] = useState(false); // State to manage dialog visibility
@@ -32,7 +32,7 @@ const CorePage = () => {
     }
 
     // Simulate progress update
-    const timer = setTimeout(() => setProgress(40), 500);
+    const timer = setTimeout(() => setProgress(22), 500);
     return () => clearTimeout(timer);
   }, []);
 

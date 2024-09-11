@@ -16,7 +16,7 @@ const steps = [
 ];
 
 const PlatformPage = () => {
-  const [progress, setProgress] = useState(40); // Update progress to reflect step 5
+  const [progress, setProgress] = useState(22); // Update progress to reflect step 5
   const [inputValue, setInputValue] = useState("");
   const [items, setItems] = useState<string[]>([]);
   const [showDialog, setShowDialog] = useState(false); // State to manage dialog visibility
@@ -31,7 +31,7 @@ const PlatformPage = () => {
     }
     
     // Simulate progress update
-    const timer = setTimeout(() => setProgress(40), 500);
+    const timer = setTimeout(() => setProgress(22), 500);
     return () => clearTimeout(timer);
   }, []);
 

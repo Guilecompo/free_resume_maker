@@ -33,7 +33,7 @@ interface Organization {
 }
 
 const ActivityPage = () => {
-  const [progress, setProgress] = useState(20);
+  const [progress, setProgress] = useState(26);
   const [coreInput, setCoreInput] = useState("");
   const [platform_use, setPlatform_use] = useState<string[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
@@ -68,6 +68,8 @@ const ActivityPage = () => {
         console.error('Error parsing saved data:', error);
       }
     }
+    const timer = setTimeout(() => setProgress(26), 500);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleAddDetail = () => {
