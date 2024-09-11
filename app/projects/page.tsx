@@ -198,19 +198,19 @@ const ProjectPage = () => {
               <div className={`text-2xl mb-2 ${step.isActive ? 'text-yellow-500' : 'text-white'}`}>
                 {step.icon}
               </div>
-              <span className="text-white ml-2 md:ml-0">{step.label}</span>
+              <span className="text-white ml-2 md:ml-0 text-xs md:text-sm">{step.label}</span>
             </div>
           ))}
         </div>
 
         {/* Content Layer */}
         <div className="w-full max-w-2xl flex flex-col">
-          <Card className="bg-[#ffffff33] flex flex-col h-full max-h-[80vh] overflow-hidden">
+          <Card className="bg-[#ffffff33] flex flex-col h-full max-h-[calc(100vh-200px)] md:max-h-[80vh] overflow-hidden">
             <CardHeader>
               <h2 className="text-sm font-medium text-center text-white">Step 7</h2>
               <CardTitle className="text-lg text-start text-gray-800">Projects</CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 overflow-auto">
+            <CardContent className="flex-1 overflow-y-auto">
               <div className="grid grid-cols-1 gap-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div className="flex flex-col">
@@ -341,8 +341,8 @@ const ProjectPage = () => {
             <CardFooter className="flex flex-col justify-center items-center">
               <div className="flex flex-col w-full gap-2">
                 <div className="grid grid-cols-2 gap-2">
-                  <Button className="w-full" onClick={handleAddProject}>Add New Project</Button>
-                  <Button className="w-full" onClick={handleViewProjects}>View Projects</Button>
+                  <Button className="w-full text-xs md:text-sm" onClick={handleAddProject}>Add New Project</Button>
+                  <Button className="w-full text-xs md:text-sm" onClick={handleViewProjects}>View Projects</Button>
                 </div>
                 <Button className="w-full" onClick={handleSubmitProjects}>Next</Button>
               </div>

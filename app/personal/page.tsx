@@ -94,15 +94,15 @@ const PersonalPage = () => {
   };
 
   return (
-    <div className="h-screen bg-[#264653] flex items-start justify-center px-4">
-      <div className="flex flex-col items-center justify-start w-full max-w-screen-lg">
+    <div className="min-h-screen bg-[#264653] flex flex-col items-center justify-start px-4 py-8 overflow-y-auto">
+      <div className="w-full max-w-screen-lg flex flex-col items-center justify-start">
         {/* Title Layer */}
-        <div className="mt-28">
-          <h3 className="text-white text-2xl mb-4">Personal</h3>
+        <div className="mt-8 mb-4">
+          <h3 className="text-white text-2xl">Personal</h3>
         </div>
 
         {/* Progress Bar Layer */}
-        <div className="relative w-full mb-6 max-w-2xl mt-10">
+        <div className="relative w-full mb-6 max-w-2xl">
           {/* White background for the progress bar */}
           <div
             className="absolute bottom-0 left-0 h-2 rounded-full"
@@ -122,7 +122,7 @@ const PersonalPage = () => {
         </div>
 
         {/* Icons and Labels Layer */}
-        <div className="flex items-center justify-between w-full max-w-2xl px-4 md:px-8 ">
+        <div className="flex items-center justify-between w-full max-w-2xl px-4 md:px-8 mb-6">
           {steps.map((step, index) => (
             <div key={index} className="flex flex-col items-center">
               <div className={`text-2xl mb-2 ${step.isActive ? 'text-yellow-500' : 'text-white'}`}>
@@ -134,15 +134,15 @@ const PersonalPage = () => {
         </div>
 
         {/* Content Layer */}
-        <div className="text-white text-center mt-5 w-full max-w-2xl">
-          <Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} >
+        <div className="text-white text-center w-full max-w-2xl mb-8">
+          <Card className="bg-[#ffffff33]">
             <CardHeader>
               <h2 className="text-sm font-medium text-center text-white">Step 1 </h2>
               <CardTitle className="text-lg text-start text-gray-800">Personal Details</CardTitle>
             </CardHeader>
             <CardContent>
               {/* Form fields */}
-              <div className="grid grid-cols-2 gap-2"> {/* Responsive grid layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col">
                   <Label htmlFor="firstname" className="text-start mb-1 text-gray-800">First Name*</Label>
                   <Input
