@@ -21,8 +21,9 @@ import { IoIosCall, IoIosMail, IoLogoGithub, IoLogoLinkedin, IoMdGlobe } from "r
 import { formatDate } from './utils/formatDate';
 
 const colorOptions = [
-    { label: 'Green & Yellow', bgColor: '#094f37', secondColor: '#f6c006' },
-    { label: 'Blue & Orange', bgColor: '#003366', secondColor: '#ff6600' }
+    { label: 'Green & Yellow', bgColor: '#094f37', secondColor: '#f6c006', textColor: '#ffffff' },
+    { label: 'Blue & Orange', bgColor: '#003366', secondColor: '#ff6600', textColor: '#ffffff'  },
+    { label: 'Black & White', bgColor: '#efefef', secondColor: '#09090b', textColor: '#09090b'  }
 ];
 
 interface WorkDetail {
@@ -243,8 +244,11 @@ const ResumeTemplate = () => {
                         <DropdownMenuTrigger asChild>
                             <Button
                                 className="w-auto sm:w-auto md:text-sm text-xs"
-                                style={{ backgroundColor: selectedColor.secondColor }}
-                            >
+                                style={{
+                                    backgroundColor: selectedColor.secondColor,
+                                    color: selectedColor.textColor
+                                }}
+                                >
                                 Select Color Theme
                             </Button>
                         </DropdownMenuTrigger>
@@ -271,7 +275,7 @@ const ResumeTemplate = () => {
                     <Button
                         onClick={downloadPDF}
                         className="w-auto sm:w-auto md:text-sm text-xs"
-                        style={{ backgroundColor: selectedColor.secondColor }}
+                        style={{ backgroundColor: selectedColor.secondColor,color: selectedColor.textColor }}
                     >
                         Download as Pdf
                     </Button>
@@ -283,7 +287,7 @@ const ResumeTemplate = () => {
                         <CardContent className="p-0 h-full w-full">
                             <div className="flex flex-row h-full">
                                 <div className="w-2/4 md:w-2/5 h-full flex items-start justify-start p-2" style={{ backgroundColor: selectedColor.bgColor }}>
-                                    <div className="text-white text-center">
+                                    <div className=" text-center" style={{ color: selectedColor.textColor }}>
                                         <div className="mt-2 flex items-start justify-start h-32 max-h-32">
                                             <div className="w-24 h-24 md:w-32 md:h-32 shadow-lg flex items-center justify-center" style={{ backgroundColor: selectedColor.secondColor }}>
                                                 <img src={profileImage || "https://via.placeholder.com/150"} alt="Profile" className="w-full h-full object-cover"/>
@@ -374,10 +378,8 @@ const ResumeTemplate = () => {
                                                     certificates.filter(cert => cert.certificate_title.trim() || cert.company_name.trim()).map((cert, index) => (
                                                         <div key={index}>
                                                             <p className="text-[7px] md:text-[12px] text-start flex items-center">
-                                                                {/* Conditional Bullet Point */}
-                                                                {index > 0 && '• '}
-                                                                {/* Conditional Display of Certificate Title */}
-                                                                {cert.certificate_title.trim()}
+                                                                {/* Always show bullet point */}
+                                                                • {cert.certificate_title.trim()}
                                                                 {/* Conditional Pipe Separator and Company Name */}
                                                                 {cert.company_name.trim() ? ` | ${cert.company_name.trim()}` : ''}
                                                             </p>
@@ -535,8 +537,8 @@ const ResumeTemplate = () => {
                     <Card ref={secondCardRef} className="w-[100mm] md:w-[210mm] h-[297mm]"> {/* Approximate A4 size */}
                         <CardContent className="p-0 h-full">
                             <div className="flex flex-col h-full">
-                                <div className="h-24 w-full flex items-center justify-center p-2" style={{ backgroundColor: selectedColor.bgColor }}>
-                                    <h2 className="text-xs md:text-xl font-semibold text-start text-white">{`${personalDetails.firstname} ${personalDetails.middlename ? `${personalDetails.middlename}. ` : ''}${personalDetails.lastname} ${personalDetails.suffix}`}</h2>
+                                <div className="h-24 w-full flex items-center justify-center p-2" style={{ backgroundColor: selectedColor.bgColor, color: selectedColor.textColor }}>
+                                    <h2 className="text-xs md:text-xl font-semibold text-start ">{`${personalDetails.firstname} ${personalDetails.middlename ? `${personalDetails.middlename}. ` : ''}${personalDetails.lastname} ${personalDetails.suffix}`}</h2>
                                 </div>
                                 <div className="bg-white w-full h-full p-2">
                                     <div className="text-gray-800 grid grid-cols-3 gap-1">

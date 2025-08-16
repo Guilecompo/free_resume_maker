@@ -62,7 +62,7 @@ export default function Home() {
                 <FaGithub className="text-2xl md:text-3xl mb-2" />
                 <span className="no-underline">GitHub</span>
               </a>
-              <a href="https://guileportfolio.netlify.app" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center text-[#bdbdbd] no-underline">
+              <a href="https://guile.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center text-[#bdbdbd] no-underline">
                 <FaUser className="text-2xl md:text-3xl mb-2 text-green-600" />
                 <span className="no-underline">Portfolio</span>
               </a>
